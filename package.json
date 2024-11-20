@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Octowl/express-review-posts#readme",
   "dependencies": {
     "dotenv": "^16.4.5",
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "morgan": "^1.10.0"
   }
 }
