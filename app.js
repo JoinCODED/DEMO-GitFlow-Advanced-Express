@@ -1,9 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
 
+const { handleErrors } = require("./middleware");
+const { NotFoundError } = require("./errors");
+
 const { authRouter } = require("./routes/auth");
 const { postsRouter } = require("./routes/posts");
-const { handleErrors } = require("./middleware");
 
 const app = express();
 
@@ -18,6 +20,13 @@ app.use(morgan("dev"));
  */
 app.use("/auth", authRouter);
 app.use("/posts", postsRouter);
+
+/**
+ * Not Found Catchall
+ */
+app.all("*", (req) => {
+  throw NotFoundError(`${req.method} ${req.url}: Route not found`);
+});
 
 /**
  * Error Handling
