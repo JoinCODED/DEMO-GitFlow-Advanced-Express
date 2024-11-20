@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Octowl/express-review-posts/issues"
   },
-  "homepage": "https://github.com/Octowl/express-review-posts#readme"
+  "homepage": "https://github.com/Octowl/express-review-posts#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
 }
