@@ -1,8 +1,13 @@
 const express = require("express");
 
+const findPost = require("./findPost");
+
 const router = express.Router();
 
-router.delete("/:id", (req, res) => {
+router.param("id", findPost);
+
+router.delete("/:id", async (req, res) => {
+  await req.post.deleteOne();
   res.status(204).end();
 });
 
