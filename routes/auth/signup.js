@@ -2,9 +2,9 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const { body } = require("express-validator");
 
-// const Post = require("../../models/Post");
-const validateRequest = require("../../middleware/validateRequest");
 const User = require("../../models/User");
+
+const validateRequest = require("../../middleware/validateRequest");
 const { BadRequestError } = require("../../errors");
 
 const router = express.Router();
@@ -17,13 +17,13 @@ const validators = [
     .withMessage("Password must be between 4 and 20 characters"),
 ];
 
-router.post("/signup", validators, validateRequest, async (req, res) => {
+router.post("/signup", validators, validateRequest, async (req, res, next) => {
   const { username, password } = req.body;
 
   // Check for existing user
   const existingUser = await User.findOne({ username });
 
-  if (existingUser) throw BadRequestError("Username is taken");
+  if (existingUser) return next(BadRequestError("Username is taken"));
 
   // Create a user
   const user = await User.create({ username, password });
