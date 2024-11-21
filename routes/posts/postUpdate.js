@@ -3,6 +3,7 @@ const express = require("express");
 const findPost = require("./findPost");
 const validateRequest = require("../../middleware/validateRequest");
 const { body } = require("express-validator");
+const { requireAuth } = require("../../middleware");
 
 const validators = [
   body("title").not().isEmpty().withMessage("Title is required"),
@@ -13,7 +14,7 @@ const router = express.Router();
 
 router.param("id", findPost);
 
-router.put("/:id", validators, validateRequest, (req, res) => {
+router.put("/:id", requireAuth, validators, validateRequest, (req, res) => {
   // Loop over keys and update the post
   for (const key in req.body) req.post[key] = req.body[key];
   // Save those changes to mongo
