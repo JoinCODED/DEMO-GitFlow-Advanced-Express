@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 
-const { handleErrors } = require("./middleware");
+const { handleErrors, currentUser } = require("./middleware");
 const { NotFoundError } = require("./errors");
 
 const { authRouter } = require("./routes/auth");
@@ -14,6 +14,7 @@ const app = express();
  */
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(currentUser);
 
 /**
  * Routers
