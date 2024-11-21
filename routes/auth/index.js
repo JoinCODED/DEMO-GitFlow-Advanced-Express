@@ -1,9 +1,10 @@
 const express = require("express");
+const { signupRouter } = require("./signup");
+const { signinRouter } = require("./signin");
 
 const router = express.Router();
 
-router.use("/hello", (req, res) => {
-  res.json({ message: "hello" });
-});
+router.use(signupRouter);
+router.use(signinRouter);
 
 module.exports = { authRouter: router };
