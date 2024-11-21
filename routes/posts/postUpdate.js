@@ -15,6 +15,9 @@ const router = express.Router();
 router.param("id", findPost);
 
 router.put("/:id", requireAuth, validators, validateRequest, (req, res) => {
+  const { user, post } = req;
+  if (post.author.id.toString("hex") !== user.id.toString())
+    return next(NotAuthorizedError("انت منو؟"));
   // Loop over keys and update the post
   for (const key in req.body) req.post[key] = req.body[key];
   // Save those changes to mongo
