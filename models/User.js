@@ -1,10 +1,16 @@
-const mongoose = require("mongoose");
+const { model, Schema } = require("mongoose");
 
 const PasswordManager = require("../helpers/PasswordManager");
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  posts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Post",
+    },
+  ],
 });
 
 UserSchema.pre("save", async function (done) {
@@ -15,4 +21,4 @@ UserSchema.pre("save", async function (done) {
   done();
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = model("User", UserSchema);
