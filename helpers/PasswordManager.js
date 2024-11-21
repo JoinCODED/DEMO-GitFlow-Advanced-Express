@@ -3,13 +3,21 @@ const { promisify } = require("util");
 
 const scryptAsync = promisify(scrypt);
 
+const KEYLEN = 64;
+
 async function toHash(password) {
   const salt = randomBytes(8).toString("hex");
-  const buf = await scryptAsync(password, salt, 64);
+  const buf = await scryptAsync(password, salt, KEYLEN);
 
   return `${buf.toString("hex")}.${salt}`;
 }
 
-function compare() {}
+async function compare(storedPassword, suppliedPassword) {
+  const [hashedPassword, salt] = storedPassword.split(".");
 
-module.exports = { toHash };
+  const buf = await scryptAsync(suppliedPassword, salt, KEYLEN);
+
+  return buf.toString("hex") === hashedPassword;
+}
+
+module.exports = { toHash, compare };
