@@ -10,6 +10,7 @@ const { BadRequestError } = require("../../errors");
 const router = express.Router();
 
 const validators = [
+  body("email").not().isEmpty().withMessage("Email is required"),
   body("username").not().isEmpty().withMessage("Username is required"),
   body("username")
     .isAlphanumeric()
