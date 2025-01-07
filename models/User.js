@@ -3,6 +3,7 @@ const { model, Schema } = require("mongoose");
 const PasswordManager = require("../helpers/PasswordManager");
 
 const UserSchema = new Schema({
+  email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   posts: [
