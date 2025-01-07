@@ -11,6 +11,10 @@ const router = express.Router();
 
 const validators = [
   body("username").not().isEmpty().withMessage("Username is required"),
+  body("username")
+    .isAlphanumeric()
+    .isLowercase()
+    .withMessage("Username should be alphanumeric and lowercase"),
   body("password")
     .trim()
     .isLength({ min: 4, max: 20 })
