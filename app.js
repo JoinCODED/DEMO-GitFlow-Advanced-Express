@@ -18,7 +18,7 @@ app.use(currentUser);
 /**
  * Routers
  */
-app.use("/auth", authRouter);
+app.use("/users", authRouter);
 
 /**
  * Not Found Catchall
