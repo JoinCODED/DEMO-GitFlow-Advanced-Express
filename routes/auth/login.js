@@ -15,7 +15,7 @@ const validators = [
   body("password").trim().not().isEmpty().withMessage("Password is required"),
 ];
 
-router.post("/signin", validators, validateRequest, async (req, res, next) => {
+router.post("/login", validators, validateRequest, async (req, res, next) => {
   // Find a user
   const { username, password } = req.body;
 
@@ -39,4 +39,4 @@ router.post("/signin", validators, validateRequest, async (req, res, next) => {
   res.status(200).json({ token });
 });
 
-module.exports = { signinRouter: router };
+module.exports = { loginRouter: router };
