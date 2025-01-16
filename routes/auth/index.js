@@ -1,11 +1,11 @@
 const express = require("express");
-const { signupRouter } = require("./signup");
+const { registerRouter } = require("./register");
 const { signinRouter } = require("./signin");
 const { meRouter } = require("./me");
 
 const router = express.Router();
 
-router.use(signupRouter);
+router.use(registerRouter);
 router.use(signinRouter);
 router.use(meRouter);
 

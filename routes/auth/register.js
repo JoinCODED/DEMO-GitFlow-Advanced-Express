@@ -53,4 +53,4 @@ router.post(
   }
 );
 
-module.exports = { signupRouter: router };
+module.exports = { regsiterRouter: router };
