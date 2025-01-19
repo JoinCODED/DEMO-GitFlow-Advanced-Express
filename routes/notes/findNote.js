@@ -11,4 +11,4 @@ const findNote = async function (req, res, next, id) {
   next();
 };
 
-module.exports = { findNote: router };
+module.exports = { findNote };

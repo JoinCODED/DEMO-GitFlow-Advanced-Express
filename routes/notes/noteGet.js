@@ -1,6 +1,6 @@
 const express = require("express");
 
-const findNote = require("./findNote");
+const { findNote } = require("./findNote");
 
 const router = express.Router();
 
