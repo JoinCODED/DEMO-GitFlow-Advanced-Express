@@ -5,6 +5,7 @@ const { handleErrors, currentUser } = require("./middleware");
 const { NotFoundError } = require("./errors");
 
 const { authRouter } = require("./routes/auth");
+const { notesRouter } = require("./routes/notes");
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(currentUser);
  * Routers
  */
 app.use("/users", authRouter);
+app.use("/notes", notesRouter);
 
 /**
  * Not Found Catchall
