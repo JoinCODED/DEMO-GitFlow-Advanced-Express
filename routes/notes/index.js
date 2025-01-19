@@ -1,6 +1,6 @@
 const express = require("express");
 const { noteCreateRouter } = require("./createNote");
-const {noteGetRouter} = require("noteGet")
+const {noteGetRouter} = require("./noteGet")
 
 const router = express.Router();
 
