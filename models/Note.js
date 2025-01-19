@@ -6,7 +6,17 @@ const NotesSchema = new Schema(
     body: { type: String, required: true },
     author: { type: Schema.Types.ObjectId, ref: "User" },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.updatedAt;
+      },
+      versionKey: false,
+    },
+  }
 );
 
 module.exports = model("Notes", NotesSchema);
